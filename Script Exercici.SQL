@@ -12,7 +12,7 @@ GROUP BY Origin, colYear, colMonth ORDER BY Origin;
 (mateixa consulta que abans i amb el mateix ordre). 
  Però a més, ara volen que en comptes del codi de l’aeroport es mostri el nom de la ciutat. */
 SELECT City, colYear, colMonth, AVG(ArrDelay) FROM usairlineflights2.flights
-INNER JOIN usairlineflights2.usairports ON usairlineflights2.flights.Origin = usairlineflights2.usairports.IATA
+LEFT JOIN usairlineflights2.usairports ON usairlineflights2.flights.Origin = usairlineflights2.usairports.IATA
 GROUP BY colMonth, colYear, City
 ORDER BY City, colYear, colMonth;
 
@@ -25,8 +25,9 @@ group by Description
 ORDER BY count(Cancelled) DESC;
 
 # 6. L’identificador dels 10 avions que més distància han recorregut fent vols.
-SELECT usairlineflights2.flights.FlightNum FROM usairlineflights2.flights
-GROUP BY FlightNum
+SELECT usairlineflights2.flights.TailNum FROM usairlineflights2.flights
+WHERE TailNum!='NA'
+GROUP BY TailNum
 ORDER BY SUM(usairlineflights2.flights.Distance) DESC
 LIMIT 10;
 
