@@ -25,7 +25,7 @@ group by Description
 ORDER BY count(Cancelled) DESC;
 
 # 6. L’identificador dels 10 avions que més distància han recorregut fent vols.
-SELECT usairlineflights2.flights.TailNum FROM usairlineflights2.flights
+SELECT usairlineflights2.flights.TailNum, SUM(usairlineflights2.flights.Distance) FROM usairlineflights2.flights
 WHERE TailNum!='NA'
 GROUP BY TailNum
 ORDER BY SUM(usairlineflights2.flights.Distance) DESC
